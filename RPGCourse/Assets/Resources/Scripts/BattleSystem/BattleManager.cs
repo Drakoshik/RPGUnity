@@ -64,9 +64,16 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
 
+        DontDestroyOnLoad(gameObject);
     }
 
 

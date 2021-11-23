@@ -22,14 +22,28 @@ public class BattleRewardHandler : MonoBehaviour
     public bool markQuestComplete;
     public string questToComplete;
 
+
     private void Start()
     {
         instance = this;
+
     }
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            QuestManager.instance.MarkQuestComplete("Defeat the Dragon Boss!!!");
+            Debug.Log("qweqwe");
+        }
+    }
+
     public void OpenRewardScreen(int xpErned, ItemManager[] itemsErned)
     {
+        
+
+
         GameManager.instance.isBattleStart = true;
 
         rewardScreen.SetActive(true);

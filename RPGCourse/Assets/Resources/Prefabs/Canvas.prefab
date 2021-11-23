@@ -16348,3 +16348,5 @@ MonoBehaviour:
   itemRewardsPanel: {fileID: 1665728455}
   itemSlotContainer: {fileID: 3803754389189511949, guid: d521dda97c16433499fbe1dc05734215, type: 3}
   itemSlotContainerParent: {fileID: 1665728456}
+  markQuestComplete: 0
+  questToComplete: 

@@ -51,6 +51,7 @@ MonoBehaviour:
   gameMenuOpened: 0
   DialogBoxOpened: 0
   shopOpened: 0
+  isBattleStart: 0
   currentCurrency: 0
 --- !u!114 &857454628435622971
 MonoBehaviour:
@@ -97,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questNames:
   - 
-  - Defeat Dragon
-  - Enter cave
-  - Steal the gem
-  - Take monster soul!
+  - Take The Map
+  - Talk to ninja
+  - Enter the cave
+  - Defeat the Dragon Boss!!!
   questMarkersComplete: 

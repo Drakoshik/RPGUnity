@@ -22,21 +22,14 @@ public class QuestManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            //Debug.Log("asd");
             SaveQuestData();
         }
         if (Input.GetKeyDown(KeyCode.F9))
         {
-            //Debug.Log("123");
             LoadQuestData();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            print(CheckIfComplete("Defeat Dragon"));
-            MarkQuestComplete("Steal the gem");
-            MarkQuestInComplete("Take monster soul!");
-        }
+        
     }
 
 

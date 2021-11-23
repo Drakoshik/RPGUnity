@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d909c1e77199fd45bb2b5db285f0c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: 
+  moveName: PurpleSlash
   activeBattletarget: 0
   targetName: {fileID: 4730881688466125842}
 --- !u!1 &4730881688252516302
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d909c1e77199fd45bb2b5db285f0c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: 
+  moveName: PurpleSlash
   activeBattletarget: 0
   targetName: {fileID: 4730881688502573362}
 --- !u!1 &4730881688437119579
@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d909c1e77199fd45bb2b5db285f0c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: 
+  moveName: PurpleSlash
   activeBattletarget: 0
   targetName: {fileID: 4730881689399154706}
 --- !u!1 &4730881688894209297
@@ -3765,8 +3765,8 @@ MonoBehaviour:
   - {fileID: 4730881688160742735}
   - {fileID: 4730881689120883012}
   enemiesPositions:
-  - {fileID: 4730881688682901490}
   - {fileID: 4730881689263822196}
+  - {fileID: 4730881688682901490}
   - {fileID: 4730881689572043980}
   playerPrefabs:
   - {fileID: 3976634658180695577, guid: 97c1a99dfe812cf4a8f7d74cee353c34, type: 3}
@@ -3776,6 +3776,7 @@ MonoBehaviour:
   - {fileID: 1446496141678836811, guid: 6f5d27d29ecdde8439dec8dc33759d2c, type: 3}
   - {fileID: 3737125590101062340, guid: 1ed2057b616f8854daca74422b76716c, type: 3}
   - {fileID: 4987869910591174048, guid: 886ffffafdfd64b418aed0ec61537ab6, type: 3}
+  - {fileID: 9202296368446387800, guid: 42a73afd9455e96448fcc8400ae0800e, type: 3}
   currentTurn: 0
   waitingForTurn: 0
   battleButtons:
@@ -3787,7 +3788,7 @@ MonoBehaviour:
   - moveName: FireBoom
     movePower: 15
     manaCost: 10
-    theEffecttoUse: {fileID: 382004191652062414, guid: d78e24c6dd6cf1549a94a7ee0e6c7880, type: 3}
+    theEffecttoUse: {fileID: 1838327620903219810, guid: d78e24c6dd6cf1549a94a7ee0e6c7880, type: 3}
   - moveName: PurpleSlash
     movePower: 15
     manaCost: 10
@@ -3796,6 +3797,14 @@ MonoBehaviour:
     movePower: 30
     manaCost: 10
     theEffecttoUse: {fileID: 27477427959999456, guid: 16bb62a70b1e6ed489e050c13bf1b797, type: 3}
+  - moveName: EXPLOSION!!!!!!
+    movePower: 500
+    manaCost: 10
+    theEffecttoUse: {fileID: 5861890039903041143, guid: 16e134d865cbec847bfc058be6b5e08a, type: 3}
+  - moveName: FireSmoke
+    movePower: 30
+    manaCost: 10
+    theEffecttoUse: {fileID: 5095640025248336600, guid: dd16cbcc301c1b842911a93859b857d9, type: 3}
   characterAttackeffect: {fileID: 5256283393934926909, guid: ebb2a1dfcfbe8f043b88b8337f7085b1, type: 3}
   damageText: {fileID: 2207993398886723333, guid: a75739dec48cceb489c5370d860cffd3, type: 3}
   playersBattleStats:
@@ -3843,7 +3852,12 @@ MonoBehaviour:
   - {fileID: 4730881689860345014}
   - {fileID: 4730881689169660085}
   - {fileID: 4730881689004740911}
-  gameOverScene: 
+  gameOverScene: GameOver
+  xpRewardAmount: 77777
+  itemsReward:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4730881688929225690
 GameObject:
   m_ObjectHideFlags: 0
@@ -6912,7 +6926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d909c1e77199fd45bb2b5db285f0c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: 
+  moveName: PurpleSlash
   activeBattletarget: 0
   targetName: {fileID: 4730881688630562930}
 --- !u!1 &4730881689532659518
