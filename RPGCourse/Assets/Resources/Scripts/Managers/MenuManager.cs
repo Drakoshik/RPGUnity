@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] itemCharacterChoiceNames;
     [SerializeField] int playerSelectedNumberForUnequpied;
 
-    private void Start()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -51,6 +51,10 @@ public class MenuManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
+        
     }
 
     private void Update()
@@ -185,6 +189,8 @@ public class MenuManager : MonoBehaviour
         statDex.text = playerSelected.dexterity.ToString();
         statDef.text = playerSelected.defence.ToString();
 
+        //мейби переделать
+
         if(itemSlotEquipedArmor.childCount != 1)
         {
             if (playerSelected.equipedArmor != null)
@@ -229,7 +235,8 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-            characterStatImage.sprite = playerSelected.CharacterImage;
+        characterStatImage.sprite = playerSelected.CharacterImage;
+
         characterStatImage.SetNativeSize();
         if (!playerSelected.CompareTag("Player"))
             characterStatImage.transform.localScale = new Vector3(2f, 2f, 2f);

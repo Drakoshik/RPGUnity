@@ -72,7 +72,7 @@ public class BattleInstantiator : MonoBehaviour
         {
             selectBattle = Random.Range(0, avaliableBattles.Length);
         }
-
+        //Debug.Log()
         BattleManager.instance.itemsReward = avaliableBattles[selectBattle].rewardItems;
         BattleManager.instance.xpRewardAmount = avaliableBattles[selectBattle].rewardXP;
 

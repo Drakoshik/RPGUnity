@@ -7,9 +7,9 @@ public class ItemsAssets : MonoBehaviour
     public static ItemsAssets instance;
     [SerializeField] ItemManager[] itemsAvailable;
 
-    private void Start()
+    private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }

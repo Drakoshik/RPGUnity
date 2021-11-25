@@ -80,6 +80,8 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
         CheckPlayersButtons();
+
+        
     }
 
     private void CheckPlayersButtons()
@@ -273,6 +275,26 @@ public class BattleManager : MonoBehaviour
         waitingForTurn = true;
         UpdateBattle();
         UpdatePlayerStats();
+        //при смене айдишника на активного иргрока сдвинуть его, после смены на след адишник вернуть назад.
+        if (activeCharacters[currentTurn].IsPlayer())
+        {
+            UpdateCharacterPosition(-1, currentTurn);
+            UpdateCharacterPosition(1, currentTurn-1);
+        }
+        else
+            UpdateCharacterPosition(1, currentTurn - 1);
+
+    }
+
+    private void UpdateCharacterPosition(int tranformPosition, int character)
+    {
+        activeCharacters[character].transform.position = new Vector3(
+                    activeCharacters[character].transform.position.x + tranformPosition,
+                    activeCharacters[character].transform.position.y,
+                    activeCharacters[character].transform.position.z
+                    );
+
+
     }
 
     public IEnumerator EnemyAttackCoroutine()
@@ -410,9 +432,16 @@ public class BattleManager : MonoBehaviour
 
     //Player Attacking Methods
 
-    public void PlayerAttack(string moveName, int selectEnemytarget)
+    private IEnumerator DoPlayerAttack()
     {
 
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void PlayerAttack(string moveName, int selectEnemytarget)
+    {
+        //вызвать корутину здвинуть игрока -1
         int movePower = 0;
 
         for(int i = 0; i < battleMovesList.Length; i++)
@@ -432,6 +461,7 @@ public class BattleManager : MonoBehaviour
             activeCharacters[currentTurn].transform.position,
             activeCharacters[currentTurn].transform.rotation
             );
+        //вызвать корутину здвинуть игрока +1
         NextTurn();
         enemyTargetPanel.SetActive(false);
     }
@@ -662,6 +692,8 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+
+            Debug.Log(BattleRewardHandler.instance);
             BattleRewardHandler.instance.OpenRewardScreen(xpRewardAmount, itemsReward);
         }
 
