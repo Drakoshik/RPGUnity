@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23aaa0600ae489e4e8ad3a1dc40b4224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemsList: []
 --- !u!114 &4335819492616184198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questNames:
-  - 
   - Take The Map
   - Talk to ninja
   - Enter the cave
   - Defeat the Dragon Boss!!!
   questMarkersComplete: 
+  questText: {fileID: 0}

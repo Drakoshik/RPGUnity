@@ -37,13 +37,14 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            //Debug.Log("asd");
             SaveData();
         }
         if (Input.GetKeyDown(KeyCode.F9))
         {
-            //Debug.Log("123");
-            LoadData();
+            if (PlayerPrefs.HasKey("Player_Pos_x"))
+            {
+                LoadData();
+            }
         }
 
 

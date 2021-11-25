@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] string[] questNames;
     [SerializeField] bool[] questMarkersComplete;
+
+    [SerializeField] TextMeshProUGUI questText;
 
     public static QuestManager instance;
 
@@ -15,6 +18,7 @@ public class QuestManager : MonoBehaviour
 
 
         questMarkersComplete = new bool[questNames.Length];
+        UpdateQuestVisualisation();
     }
 
 
@@ -27,9 +31,7 @@ public class QuestManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F9))
         {
             LoadQuestData();
-        }
-
-        
+        } 
     }
 
 
@@ -43,7 +45,6 @@ public class QuestManager : MonoBehaviour
             }
         }
 
-
         return 0;
     }
 
@@ -52,7 +53,7 @@ public class QuestManager : MonoBehaviour
     {
         int questNumberToCheck = GetQuestNumber(questToCheck);
 
-        if(questNumberToCheck != 0)
+        if(questNumberToCheck >= 0)
         {
             return questMarkersComplete[questNumberToCheck];
         }
@@ -62,13 +63,28 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateQuestObjects()
     {
+        
         QuestObject[] questObjects = FindObjectsOfType<QuestObject>();
 
-        if(questObjects.Length > 0)
+        if (questObjects.Length > 0)
         {
-            foreach(QuestObject questObject in questObjects)
+            foreach (QuestObject questObject in questObjects)
             {
                 questObject.CheckForComletion();
+            }
+
+        }
+       
+    }
+
+    public void UpdateQuestVisualisation()
+    {
+        questText.text = "";
+        for (int i = 0; i < questNames.Length; i++)
+        {
+            if(questMarkersComplete[i] == false)
+            {
+                questText.text += questNames[i] + "\n";
             }
         }
     }
@@ -79,6 +95,7 @@ public class QuestManager : MonoBehaviour
         questMarkersComplete[questNumberToCheck] = true;
 
         UpdateQuestObjects();
+        UpdateQuestVisualisation();
     }
 
     public void MarkQuestInComplete(string questToMark)
@@ -87,6 +104,7 @@ public class QuestManager : MonoBehaviour
         questMarkersComplete[questNumberToCheck] = false;
 
         UpdateQuestObjects();
+        UpdateQuestVisualisation();
     }
 
 
@@ -121,6 +139,11 @@ public class QuestManager : MonoBehaviour
             if (valueToSet == 0) questMarkersComplete[i] = false;
             else questMarkersComplete[i] = true;
         }
+    }
+
+    public string[] GetQuestNames()
+    {
+        return questNames;
     }
 
 }

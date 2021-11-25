@@ -7,7 +7,7 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] Image imageToFade;
-    public GameObject menu, statPanel, inventoryPanel;
+    public GameObject menu, statPanel, inventoryPanel, characterInfoPanel, questTextPanel;
 
 
     [SerializeField] GameObject[] statsButtons;
@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
 
 
     [SerializeField] GameObject itemSlotContainer;
-    [SerializeField] Transform itemSlotContainerParent;
+    [SerializeField] Transform itemSlotContainerParent, itemSlotEquipedArmor, itemSlotEquipedWeapon;
 
     public TextMeshProUGUI itemName, itemDescription;
 
@@ -37,16 +37,25 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] GameObject characterChoisePanel;
     [SerializeField] TextMeshProUGUI[] itemCharacterChoiceNames;
-
+    [SerializeField] int playerSelectedNumberForUnequpied;
 
     private void Start()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.shopOpened == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.shopOpened == false && GameManager.instance.isBattleStart == false)
         {
             if (menu.activeInHierarchy)
             {
@@ -61,16 +70,69 @@ public class MenuManager : MonoBehaviour
             {
                 UpdateStats();
                 menu.SetActive(true);
+                characterInfoPanel.SetActive(true);
                 GameManager.instance.gameMenuOpened = true;
             }
+
+            if (questTextPanel.activeInHierarchy)
+                questTextPanel.SetActive(false);
+            else
+                questTextPanel.SetActive(true);
         }
-        
+
+        if(GameManager.instance.isBattleStart == true)
+        {
+            questTextPanel.SetActive(false);
+        }
+        else
+            questTextPanel.SetActive(true);
+
+    }
+
+
+    public void SavePanel()
+    {
+        GameManager.instance.SaveData();
+        QuestManager.instance.SaveQuestData();
     }
 
     public void CloseMenu()
     {
         menu.SetActive(false);
+        questTextPanel.SetActive(true);
         GameManager.instance.gameMenuOpened = false;
+    }
+
+    public void OpenItemsPanel()
+    {
+        if (inventoryPanel.activeInHierarchy)
+        {
+            inventoryPanel.SetActive(false);
+            statPanel.SetActive(false);
+            characterInfoPanel.SetActive(true);
+        }
+        else
+        {
+            inventoryPanel.SetActive(true);
+            statPanel.SetActive(false);
+            characterInfoPanel.SetActive(false);
+        }
+    }
+
+    public void OpenStatsPanel()
+    {
+        if (statPanel.activeInHierarchy)
+        {
+            inventoryPanel.SetActive(false);
+            statPanel.SetActive(false);
+            characterInfoPanel.SetActive(true);
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+            statPanel.SetActive(true);
+            characterInfoPanel.SetActive(false);
+        }
     }
 
 
@@ -115,7 +177,7 @@ public class MenuManager : MonoBehaviour
     public void StatsMenuUpdate(int playerSelectedNumber)
     {
         PlayerStats playerSelected = playerStats[playerSelectedNumber];
-
+        playerSelectedNumberForUnequpied = playerSelectedNumber;
         statName.text = playerSelected.playerName;
         statHP.text = playerSelected.currentHp.ToString() + "/" + playerSelected.maxHP;
         statMana.text = playerSelected.currentMana.ToString() + "/" + playerSelected.maxMana;
@@ -123,7 +185,51 @@ public class MenuManager : MonoBehaviour
         statDex.text = playerSelected.dexterity.ToString();
         statDef.text = playerSelected.defence.ToString();
 
-        characterStatImage.sprite = playerSelected.CharacterImage;
+        if(itemSlotEquipedArmor.childCount != 1)
+        {
+            if (playerSelected.equipedArmor != null)
+            {
+                RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotEquipedArmor).GetComponent<RectTransform>();
+
+                Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
+                itemImage.sprite = playerSelected.equipedArmor.itemImage;
+
+                RectTransform rt = itemImage.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(95, 95);
+                TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
+
+                if (playerSelected.equipedArmor.amount > 1)
+                    itemsAmountText.text = playerSelected.equipedArmor.amount.ToString();
+                else
+                    itemsAmountText.text = "";
+
+                itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedArmor;
+            }
+        }
+
+        if (itemSlotEquipedWeapon.childCount != 1)
+        {
+            if (playerSelected.equipedWeapon != null)
+            {
+                RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotEquipedWeapon).GetComponent<RectTransform>();
+
+                Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
+                itemImage.sprite = playerSelected.equipedWeapon.itemImage;
+
+                RectTransform rt = itemImage.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(95, 95);
+                TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
+
+                if (playerSelected.equipedWeapon.amount > 1)
+                    itemsAmountText.text = playerSelected.equipedWeapon.amount.ToString();
+                else
+                    itemsAmountText.text = "";
+
+                itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedWeapon;
+            }
+        }
+
+            characterStatImage.sprite = playerSelected.CharacterImage;
         characterStatImage.SetNativeSize();
         if (!playerSelected.CompareTag("Player"))
             characterStatImage.transform.localScale = new Vector3(2f, 2f, 2f);
@@ -134,6 +240,35 @@ public class MenuManager : MonoBehaviour
         statEquipedWeapon.text = playerSelected.equipedWeaponName;
         statEquipedWeaponPower.text = playerSelected.weaponPower.ToString();
         statEquipedArmorDefence.text = playerSelected.armorDefence.ToString();
+    }
+
+    public void UnEquipButton()
+    {
+        Inventory.instance.AddItems(activeItem);
+        PlayerStats playerSelected = playerStats[playerSelectedNumberForUnequpied];
+        if (activeItem)
+        {
+            if(activeItem.itemType == ItemManager.ItemType.Armor)
+            {
+                playerSelected.equipedArmor = null;
+                playerSelected.equipedArmorName = "";
+                playerSelected.armorDefence = 0;
+                foreach (Transform itemSlot in itemSlotEquipedArmor)
+                {
+                    Destroy(itemSlot.gameObject);
+                }
+            }
+            else if (activeItem.itemType == ItemManager.ItemType.Weapon)
+            {
+                playerSelected.equipedWeapon = null;
+                playerSelected.equipedWeaponName = "";
+                playerSelected.weaponPower = 0;
+                foreach (Transform itemSlot in itemSlotEquipedWeapon)
+                {
+                    Destroy(itemSlot.gameObject);
+                }
+            }
+        }
     }
 
     public void UpdateItemsInventory()

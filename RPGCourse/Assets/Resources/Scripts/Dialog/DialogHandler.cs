@@ -5,22 +5,43 @@ using UnityEngine;
 public class DialogHandler : MonoBehaviour
 {
     public string[] sentences;
-    private bool canActivateBox;
 
+    private bool canActivateBox;
+    public bool ifNeedPreviousQuest;
+
+    [SerializeField] string previousQuest;
+    private int questID;
 
     [SerializeField] bool shouldActivateTheQuest;
     [SerializeField] string questToMark;
     [SerializeField] bool markAsComplete;
 
+    private void Start()
+    {
+        questID = QuestManager.instance.GetQuestNumber(questToMark);
+        if(questID >= 1)
+            previousQuest = QuestManager.instance.GetQuestNames()[questID - 1];
+    }
+
 
     private void Update()
     {
-        if(canActivateBox && Input.GetMouseButtonDown(0) && !DialogController.instance.IsDialogBoxActive())
+        if (canActivateBox && Input.GetMouseButtonDown(0) && !DialogController.instance.IsDialogBoxActive())
         {
             DialogController.instance.ActivateDialog(sentences);
             if (shouldActivateTheQuest)
             {
-                DialogController.instance.ActivateQuestAtEnd(questToMark, markAsComplete);
+                if (ifNeedPreviousQuest && questID >= 1)
+                {
+                    
+                    if (QuestManager.instance.CheckIfComplete(previousQuest))
+                    {
+                        DialogController.instance.ActivateQuestAtEnd(questToMark, markAsComplete);
+                    }
+                }
+                else
+                    DialogController.instance.ActivateQuestAtEnd(questToMark, markAsComplete);
+
             }
         }
     }

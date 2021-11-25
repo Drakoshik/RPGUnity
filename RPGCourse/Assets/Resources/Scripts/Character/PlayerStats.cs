@@ -46,12 +46,10 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            AddXP(100);
-        }
+        AddXP(0);
     }
 
 

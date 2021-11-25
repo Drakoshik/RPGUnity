@@ -79,17 +79,6 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("dfgr");
-            StartBattle(new string[] { "Kozlik", "Tree Mage", "Mage" }, true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            NextTurn();
-        }
-
         CheckPlayersButtons();
     }
 
@@ -242,6 +231,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+
     private void ImportPlayerStats(int i)
     {
         PlayerStats player = GameManager.instance.GetPlayerStats()[i];
@@ -284,6 +274,7 @@ public class BattleManager : MonoBehaviour
         UpdateBattle();
         UpdatePlayerStats();
     }
+
     public IEnumerator EnemyAttackCoroutine()
     {
         StartCoroutine(ChangePositionOnAttack(1));
@@ -308,10 +299,10 @@ public class BattleManager : MonoBehaviour
                 players.Add(i);
             }
         }
-        Debug.Log("1");
+
         int selectedPlayerToAttack = players[Random.Range(0, players.Count)];
         int movePower = 0;
-        Debug.Log("2");
+
         int selectedAttack = Random.Range(0, activeCharacters[currentTurn].AttackMovesAvaliable().Length);
 
         for (int i = 0; i < battleMovesList.Length; i++)
@@ -321,12 +312,14 @@ public class BattleManager : MonoBehaviour
                 movePower = GettingMovePowerAndEffectInst(selectedPlayerToAttack,i);
             }
         }
-        Debug.Log("3");
+
+
         //Instantiate(
         //    characterAttackeffect,
         //    activeCharacters[currentTurn].transform.position,
         //    activeCharacters[currentTurn].transform.rotation
         //    );
+
         DealdamageToCharacters(selectedPlayerToAttack, movePower);
 
 
@@ -382,7 +375,6 @@ public class BattleManager : MonoBehaviour
     public void UpdatePlayerStats()
     {
         
-
         for(int i = 0; i < playersNameText.Length; i++)
         {
             if(activeCharacters.Count > i)
@@ -440,7 +432,6 @@ public class BattleManager : MonoBehaviour
             activeCharacters[currentTurn].transform.position,
             activeCharacters[currentTurn].transform.rotation
             );
-        //StartCoroutine(ChangePositionOnAttack(1));
         NextTurn();
         enemyTargetPanel.SetActive(false);
     }

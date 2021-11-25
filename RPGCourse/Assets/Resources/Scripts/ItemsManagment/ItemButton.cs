@@ -10,11 +10,16 @@ public class ItemButton : MonoBehaviour
 
     public void Press()
     {
-        if (MenuManager.instance.menu.activeInHierarchy)
+        if (MenuManager.instance.inventoryPanel.activeInHierarchy)
         {
             MenuManager.instance.itemName.text = itemOnButton.itemName;
             MenuManager.instance.itemDescription.text = itemOnButton.itemDescription;
 
+            MenuManager.instance.activeItem = itemOnButton;
+        }
+
+        if (MenuManager.instance.statPanel.activeInHierarchy)
+        {
             MenuManager.instance.activeItem = itemOnButton;
         }
 

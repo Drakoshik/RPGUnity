@@ -14,6 +14,7 @@ public class AreaExit : MonoBehaviour
     private void Start()
     {
         areaEnter.transitionAreaName = transitionName;
+        MenuManager.instance.Fadeout();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -14,8 +14,6 @@ public class BattleRewardHandler : MonoBehaviour
     [SerializeField] ItemManager[] rewardItems;
     [SerializeField] int xpReward;
 
-    [SerializeField] GameObject itemRewardsPanel;
-
     [SerializeField] GameObject itemSlotContainer;
     [SerializeField] Transform itemSlotContainerParent;
 
@@ -26,7 +24,6 @@ public class BattleRewardHandler : MonoBehaviour
     private void Start()
     {
         instance = this;
-
     }
 
 
@@ -41,8 +38,6 @@ public class BattleRewardHandler : MonoBehaviour
 
     public void OpenRewardScreen(int xpErned, ItemManager[] itemsErned)
     {
-        
-
 
         GameManager.instance.isBattleStart = true;
 
@@ -77,8 +72,6 @@ public class BattleRewardHandler : MonoBehaviour
             itemSlot.GetComponent<ItemButton>().itemOnButton = item;
             itemSlot.GetComponent<Button>().interactable = false;
         }
-
-
     }
 
     public void CloseButton()
@@ -97,7 +90,6 @@ public class BattleRewardHandler : MonoBehaviour
             Inventory.instance.AddItems(ItemRewarded);
         }
 
-
         rewardScreen.SetActive(false);
 
         GameManager.instance.isBattleStart = false;
@@ -107,7 +99,5 @@ public class BattleRewardHandler : MonoBehaviour
             QuestManager.instance.MarkQuestComplete(questToComplete);
         }
     }
-
-
 
 }

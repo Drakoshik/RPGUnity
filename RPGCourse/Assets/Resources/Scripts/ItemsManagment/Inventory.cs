@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    private List<ItemManager> itemsList;
+    [SerializeField] List<ItemManager> itemsList;
 
 
 
