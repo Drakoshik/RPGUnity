@@ -61,7 +61,8 @@ public class BattleInstantiator : MonoBehaviour
 
     public IEnumerator StartBattleCoroutine()
     {
-        MenuManager.instance.FadeImage();
+        yield return new WaitForSeconds(1f);
+        MenuManager.instance.FadeImageIn();
         GameManager.instance.isBattleStart = true;
         int selectBattle;
         if (avaliableBattles.Length == 1)
@@ -80,7 +81,6 @@ public class BattleInstantiator : MonoBehaviour
         BattleRewardHandler.instance.questToComplete = questToComplete;
 
         yield return new WaitForSeconds(1f);
-        MenuManager.instance.Fadeout();
 
         BattleManager.instance.StartBattle(avaliableBattles[selectBattle].enemies, canRunAway);
 

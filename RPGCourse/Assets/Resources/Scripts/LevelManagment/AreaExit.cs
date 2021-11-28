@@ -14,15 +14,15 @@ public class AreaExit : MonoBehaviour
     private void Start()
     {
         areaEnter.transitionAreaName = transitionName;
-        MenuManager.instance.Fadeout();
+        //MenuManager.instance.FadeImageOut();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             PlayerController.instance.transitionName = transitionName;
-            MenuManager.instance.FadeImage();
             StartCoroutine(LoadSceneCoroutine());
+            MenuManager.instance.FadeImageIn();
         }
     }
 

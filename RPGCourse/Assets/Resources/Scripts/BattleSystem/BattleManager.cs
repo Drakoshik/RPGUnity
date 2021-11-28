@@ -62,7 +62,7 @@ public class BattleManager : MonoBehaviour
 
     private bool canRun;
 
-    private void Start()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -179,6 +179,10 @@ public class BattleManager : MonoBehaviour
 
         waitingForTurn = true;
         currentTurn = Random.Range(0, activeCharacters.Count);
+        if (activeCharacters[currentTurn].IsPlayer())
+        {
+            UpdateCharacterPosition(-1, currentTurn);
+        }
         UpdatePlayerStats();
     }
 
@@ -266,6 +270,10 @@ public class BattleManager : MonoBehaviour
 
     private void NextTurn()
     {
+        if (activeCharacters[currentTurn].IsPlayer())
+        {
+            UpdateCharacterPosition(1, currentTurn);
+        }
         currentTurn++;
         if (currentTurn >= activeCharacters.Count)
         {
@@ -273,16 +281,15 @@ public class BattleManager : MonoBehaviour
         }
 
         waitingForTurn = true;
+
+
         UpdateBattle();
         UpdatePlayerStats();
         //при смене айдишника на активного иргрока сдвинуть его, после смены на след адишник вернуть назад.
         if (activeCharacters[currentTurn].IsPlayer())
         {
             UpdateCharacterPosition(-1, currentTurn);
-            UpdateCharacterPosition(1, currentTurn-1);
         }
-        else
-            UpdateCharacterPosition(1, currentTurn - 1);
 
     }
 
@@ -299,12 +306,12 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator EnemyAttackCoroutine()
     {
-        StartCoroutine(ChangePositionOnAttack(1));
+        UpdateCharacterPosition(1, currentTurn);
         waitingForTurn = false;
         yield return new WaitForSeconds(1f);
         EnemyAttack();
         yield return new WaitForSeconds(1f);
-        StartCoroutine(ChangePositionOnAttack(-1));
+        UpdateCharacterPosition(-1, currentTurn);
         NextTurn();
     }
 
@@ -455,13 +462,13 @@ public class BattleManager : MonoBehaviour
 
         DealdamageToCharacters(selectEnemytarget, movePower);
 
+        waitingForTurn = false;
 
-        Instantiate(
-            characterAttackeffect,
-            activeCharacters[currentTurn].transform.position,
-            activeCharacters[currentTurn].transform.rotation
-            );
-        //вызвать корутину здвинуть игрока +1
+        //Instantiate(
+        //    characterAttackeffect,
+        //    activeCharacters[currentTurn].transform.position,
+        //    activeCharacters[currentTurn].transform.rotation
+        //    );
         NextTurn();
         enemyTargetPanel.SetActive(false);
     }

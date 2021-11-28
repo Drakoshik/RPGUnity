@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public int currentCurrency;
 
-    private void Start()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
         {
             SaveData();
+            QuestManager.instance.SaveQuestData();
         }
         if (Input.GetKeyDown(KeyCode.F9))
         {
@@ -127,10 +128,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadData()
+    IEnumerator LoadDataCoroutine()
     {
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(PlayerPrefs.GetString("Current_Scene"));
         LoadingPlayerPosition();
         LoadingPlayerStats();
+        LoadingInventoryData();
+        QuestManager.instance.LoadQuestData();
+    }
+
+    public void LoadData()
+    {
+        MenuManager.instance.FadeImageIn();
+        StartCoroutine(LoadDataCoroutine());
+    }
+
+    private static void LoadingInventoryData()
+    {
         int itemListCount = Inventory.instance.GetItemsList().Count;
 
         for (int i = 0; i < itemListCount; i++)
@@ -149,18 +165,17 @@ public class GameManager : MonoBehaviour
             ItemManager itemToAdd = ItemsAssets.instance.GetItemAsset(itemName);
             print(itemToAdd);
             int itemAmount = 0;
-            if(PlayerPrefs.HasKey("Items_" + i + "_Amount"))
+            if (PlayerPrefs.HasKey("Items_" + i + "_Amount"))
             {
                 itemAmount = PlayerPrefs.GetInt("Items_" + i + "_Amount");
             }
             Inventory.instance.AddItems(itemToAdd);
-            if(itemToAdd.isStakable && itemAmount > 1)
+            if (itemToAdd.isStakable && itemAmount > 1)
             {
                 itemToAdd.amount = itemAmount;
             }
 
         }
-
     }
 
     private void LoadingPlayerStats()

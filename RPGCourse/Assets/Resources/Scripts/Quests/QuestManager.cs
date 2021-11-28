@@ -10,6 +10,8 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI questText;
 
+    [SerializeField] GameObject questTextPanel;
+
     public static QuestManager instance;
 
     private void Start()
@@ -24,14 +26,13 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5))
+
+        if (GameManager.instance.isBattleStart == true || MenuManager.instance.menu.activeInHierarchy)
         {
-            SaveQuestData();
+            questTextPanel.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            LoadQuestData();
-        } 
+        else
+            questTextPanel.SetActive(true);
     }
 
 
@@ -139,6 +140,7 @@ public class QuestManager : MonoBehaviour
             if (valueToSet == 0) questMarkersComplete[i] = false;
             else questMarkersComplete[i] = true;
         }
+        UpdateQuestVisualisation();
     }
 
     public string[] GetQuestNames()

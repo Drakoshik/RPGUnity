@@ -77,20 +77,7 @@ public class MenuManager : MonoBehaviour
                 characterInfoPanel.SetActive(true);
                 GameManager.instance.gameMenuOpened = true;
             }
-
-            if (questTextPanel.activeInHierarchy)
-                questTextPanel.SetActive(false);
-            else
-                questTextPanel.SetActive(true);
         }
-
-        if(GameManager.instance.isBattleStart == true)
-        {
-            questTextPanel.SetActive(false);
-        }
-        else
-            questTextPanel.SetActive(true);
-
     }
 
 
@@ -103,7 +90,6 @@ public class MenuManager : MonoBehaviour
     public void CloseMenu()
     {
         menu.SetActive(false);
-        questTextPanel.SetActive(true);
         GameManager.instance.gameMenuOpened = false;
     }
 
@@ -361,12 +347,12 @@ public class MenuManager : MonoBehaviour
         Application.Quit(); 
     }
 
-    public void FadeImage()
+    public void FadeImageIn()
     {
         imageToFade.GetComponent<Animator>().SetTrigger("StartFading");
     }
 
-    public void Fadeout()
+    public void FadeImageOut()
     {
         imageToFade.GetComponent<Animator>().SetTrigger("EndFading");
     }
