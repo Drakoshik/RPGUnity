@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9166682469628671774}
   - component: {fileID: 9166682469628671773}
-  - component: {fileID: 9166682469628671772}
   - component: {fileID: 9166682469628671775}
+  - component: {fileID: 5386535183541194457}
   m_Layer: 0
   m_Name: Silver Armor
   m_TagString: Untagged
@@ -86,29 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9166682469628671772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166682469628671747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c83f6234ae4624e9ab3528ea60ee44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 2
-  itemName: Silver Armor
-  itemDescription: Defence
-  valueInCoins: 0
-  itemImage: {fileID: 147862781, guid: edeb4d0973b1b404b815ce1493746d3c, type: 3}
-  AmountOfAffect: 0
-  affectType: 0
-  weaponDexterity: 0
-  armorDefence: 20
-  isStakable: 0
-  amount: 1
 --- !u!61 &9166682469628671775
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5580159, y: 0.76604515}
   m_EdgeRadius: 0
+--- !u!114 &5386535183541194457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166682469628671747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f34738303a0c44ea2fae5fa799f6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Silver Armor
+  itemDescription: Defence
+  valueInCoins: 0
+  itemImage: {fileID: 147862781, guid: edeb4d0973b1b404b815ce1493746d3c, type: 3}
+  AmountOfAffect: 0
+  armorDefence: 20

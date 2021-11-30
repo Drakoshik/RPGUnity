@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5809454621621172598}
   - component: {fileID: 5809454621621172603}
-  - component: {fileID: 5809454621621172600}
   - component: {fileID: 5809454621621172601}
+  - component: {fileID: 6273131173108516681}
   m_Layer: 0
   m_Name: Scythe
   m_TagString: Untagged
@@ -86,29 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5809454621621172600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5809454621621172599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c83f6234ae4624e9ab3528ea60ee44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: ForestScythe
-  itemDescription: Attack
-  valueInCoins: 0
-  itemImage: {fileID: -52960676, guid: 0827db5e4b7efc140b2b745b4a19c53a, type: 3}
-  AmountOfAffect: 0
-  affectType: 0
-  weaponDexterity: 15
-  armorDefence: 0
-  isStakable: 0
-  amount: 1
 --- !u!61 &5809454621621172601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5204705, y: 0.5126115}
   m_EdgeRadius: 0
+--- !u!114 &6273131173108516681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809454621621172599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c165e1d5f5902346850b24435983b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: ForestScythe
+  itemDescription: Attack
+  valueInCoins: 0
+  itemImage: {fileID: -52960676, guid: 0827db5e4b7efc140b2b745b4a19c53a, type: 3}
+  AmountOfAffect: 0
+  weaponDexterity: 3333

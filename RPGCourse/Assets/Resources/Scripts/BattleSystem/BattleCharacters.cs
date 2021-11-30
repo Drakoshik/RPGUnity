@@ -68,21 +68,21 @@ public class BattleCharacters : MonoBehaviour
 
     public void UseItemInBattle(ItemManager itemToUse)
     {
-        if(itemToUse.itemType == ItemManager.ItemType.Item)
-        {
-            if(itemToUse.affectType == ItemManager.AffectType.HP)
-            {
-                AddHP(itemToUse.AmountOfAffect);
-            }
-            else if (itemToUse.affectType == ItemManager.AffectType.Mana)
-            {
-                AddMana(itemToUse.AmountOfAffect);
-            }
-            else if(itemToUse.affectType == ItemManager.AffectType.MultiPotion)
-            {
-                AddHPAndMana(itemToUse.AmountOfAffect);
-            }
-        }
+        //if (itemToUse.itemType == ItemManager.ItemType.Item)
+        //{
+        //    if (itemToUse.affectType == ItemManager.AffectType.HP)
+        //    {
+        //        AddHP(itemToUse.AmountOfAffect);
+        //    }
+        //    else if (itemToUse.affectType == ItemManager.AffectType.Mana)
+        //    {
+        //        AddMana(itemToUse.AmountOfAffect);
+        //    }
+        //    else if (itemToUse.affectType == ItemManager.AffectType.MultiPotion)
+        //    {
+        //        AddHPAndMana(itemToUse.AmountOfAffect);
+        //    }
+        //}
     }
 
     private void AddHPAndMana(int amountOfAffect)

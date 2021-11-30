@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<ItemManager> itemsList;
 
 
+    //public static inventar instance;
+
+    //[SerializeField] List<Item> itemsList;
 
     private void Start()
     {
@@ -16,18 +19,33 @@ public class Inventory : MonoBehaviour
         itemsList = new List<ItemManager>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (ItemManager itemInInventory in itemsList)
+            {
+                Debug.Log(itemInInventory);
+                if (itemInInventory.GetComponentInChildren<StackableItems>())
+                    Debug.Log(itemInInventory.GetComponentInChildren<StackableItems>().itemAmount);
+            }
+        }
+    }
 
     public void AddItems(ItemManager item)
     {
-        if (item.isStakable)
+        bool isItemStacks = item.GetComponentInChildren<StackableItems>();
+
+
+        if (isItemStacks)
         {
             bool itemAlreadyInInventory = false;
 
-            foreach(ItemManager itemInInventory in itemsList)
+            foreach (ItemManager itemInInventory in itemsList)
             {
-                if(itemInInventory.itemName == item.itemName)
+                if (itemInInventory.itemName == item.itemName)
                 {
-                    itemInInventory.amount += item.amount;
+                    itemInInventory.GetComponentInChildren<StackableItems>().itemAmount += item.GetComponentInChildren<StackableItems>().itemAmount;
                     itemAlreadyInInventory = true;
                 }
             }
@@ -41,24 +59,27 @@ public class Inventory : MonoBehaviour
         {
             itemsList.Add(item);
         }
-
     }
 
     public void RemoveItem(ItemManager item)
     {
-        if (item.isStakable)
+        bool isItemStacks = item.GetComponentInChildren<StackableItems>();
+
+
+        if (isItemStacks)
         {
+        
             ItemManager inventoryItem = null;
-            foreach(ItemManager itemInInventory in itemsList)
+            foreach (ItemManager itemInInventory in itemsList)
             {
-                if(itemInInventory.itemName == item.itemName)
+                if (itemInInventory.itemName == item.itemName)
                 {
-                    itemInInventory.amount--;
+                    itemInInventory.GetComponentInChildren<StackableItems>().itemAmount--;
                     inventoryItem = itemInInventory;
                 }
             }
 
-            if(inventoryItem != null && inventoryItem.amount <= 0)
+            if (inventoryItem != null && inventoryItem.GetComponentInChildren<StackableItems>().itemAmount <= 0)
             {
                 itemsList.Remove(inventoryItem);
             }
@@ -68,6 +89,66 @@ public class Inventory : MonoBehaviour
             itemsList.Remove(item);
         }
     }
+
+
+    //private void Start()
+    //{
+    //    instance = this;
+    //    itemsList = new List<ItemManager>();
+    //}
+
+
+    //public void AddItems(ItemManager item)
+    //{
+    //    if (item.isStakable)
+    //    {
+    //        bool itemAlreadyInInventory = false;
+
+    //        foreach(ItemManager itemInInventory in itemsList)
+    //        {
+    //            if(itemInInventory.itemName == item.itemName)
+    //            {
+    //                itemInInventory.amount += item.amount;
+    //                itemAlreadyInInventory = true;
+    //            }
+    //        }
+
+    //        if (!itemAlreadyInInventory)
+    //        {
+    //            itemsList.Add(item);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        itemsList.Add(item);
+    //    }
+
+    //}
+
+    //public void RemoveItem(ItemManager item)
+    //{
+    //    if (item.isStakable)
+    //    {
+    //        ItemManager inventoryItem = null;
+    //        foreach(ItemManager itemInInventory in itemsList)
+    //        {
+    //            if(itemInInventory.itemName == item.itemName)
+    //            {
+    //                itemInInventory.amount--;
+    //                inventoryItem = itemInInventory;
+    //            }
+    //        }
+
+    //        if(inventoryItem != null && inventoryItem.amount <= 0)
+    //        {
+    //            itemsList.Remove(inventoryItem);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        itemsList.Remove(item);
+    //    }
+    //}
 
     public List<ItemManager> GetItemsList()
     {

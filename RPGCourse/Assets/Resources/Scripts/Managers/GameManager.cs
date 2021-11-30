@@ -79,10 +79,11 @@ public class GameManager : MonoBehaviour
             ItemManager itemInInventory = Inventory.instance.GetItemsList()[i];
             PlayerPrefs.SetString("Item_" + i + "_Name", itemInInventory.itemName);
             print(itemInInventory);
+            bool isStacks = itemInInventory.GetComponentInChildren<StackableItems>();
 
-            if (itemInInventory.isStakable)
+            if (isStacks)
             {
-                PlayerPrefs.SetInt("Items_" + i + "_Amount", itemInInventory.amount);
+                PlayerPrefs.SetInt("Items_" + i + "_Amount", itemInInventory.GetComponentInChildren<StackableItems>().itemAmount);
             }
         }
     }
@@ -152,9 +153,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < itemListCount; i++)
         {
             ItemManager itemInInventory = Inventory.instance.GetItemsList()[0];
-            if (itemInInventory.isStakable)
+            bool isStacks = itemInInventory.GetComponentInChildren<StackableItems>();
+
+            if (isStacks)
             {
-                itemInInventory.amount = 1;
+                itemInInventory.GetComponentInChildren<StackableItems>().itemAmount = 1;
             }
             Inventory.instance.RemoveItem(itemInInventory);
         }
@@ -170,9 +173,12 @@ public class GameManager : MonoBehaviour
                 itemAmount = PlayerPrefs.GetInt("Items_" + i + "_Amount");
             }
             Inventory.instance.AddItems(itemToAdd);
-            if (itemToAdd.isStakable && itemAmount > 1)
+
+            bool isStacks = itemToAdd.GetComponentInChildren<StackableItems>();
+
+            if (isStacks && itemAmount > 1)
             {
-                itemToAdd.amount = itemAmount;
+                itemToAdd.GetComponentInChildren<StackableItems>().itemAmount = itemAmount;
             }
 
         }

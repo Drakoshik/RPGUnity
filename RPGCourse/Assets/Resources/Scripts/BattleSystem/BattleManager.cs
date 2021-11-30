@@ -594,8 +594,17 @@ public class BattleManager : MonoBehaviour
 
             TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
 
-            if (item.amount > 1)
-                itemsAmountText.text = item.amount.ToString();
+            bool isStacks = item.GetComponentInChildren<StackableItems>();
+
+            if (isStacks)
+            {
+                int itemStacksCount = item.GetComponentInChildren<StackableItems>().itemAmount;
+
+                if (itemStacksCount > 1)
+                    itemsAmountText.text = itemStacksCount.ToString();
+                else
+                    itemsAmountText.text = "";
+            }
             else
                 itemsAmountText.text = "";
 

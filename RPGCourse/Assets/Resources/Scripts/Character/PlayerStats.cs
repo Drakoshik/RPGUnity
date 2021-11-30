@@ -102,14 +102,14 @@ public class PlayerStats : MonoBehaviour
     {
         equipedWeapon = weaponToEquiped;
         equipedWeaponName = equipedWeapon.itemName;
-        weaponPower = equipedWeapon.weaponDexterity;
+        weaponPower = equipedWeapon.GetComponentInChildren<Weapon>().weaponDexterity;
     }
 
     public void EquipedArmor(ItemManager armorToEquiped)
     {
         equipedArmor = armorToEquiped;
         equipedArmorName = equipedArmor.itemName;
-        armorDefence = equipedArmor.armorDefence;
+        armorDefence = equipedArmor.GetComponentInChildren<Armor>().armorDefence;
     }
 
 }

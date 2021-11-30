@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 857454628435622971}
   - component: {fileID: 4335819492616184198}
   - component: {fileID: 857454629952954580}
+  - component: {fileID: 2239976085697291082}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -393,12 +394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsAvailable:
-  - {fileID: 4398337953552598414, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
-  - {fileID: 9166682469628671772, guid: d8fb86aa30de0a6499d9c8cb789f6e1a, type: 3}
-  - {fileID: 5809454621621172600, guid: 497344587d6b07f449e578d5f87fe14a, type: 3}
-  - {fileID: 3362050689319959711, guid: 455b3f6d13952d34483b3099a7425f14, type: 3}
-  - {fileID: 1599775991828378595, guid: 69fbfaa7a94a0ca4298a1816ab85ac70, type: 3}
-  - {fileID: 2465907868957956466, guid: 8d0fa18db489a034ab143f89b1d3116f, type: 3}
+  - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
+  - {fileID: 5386535183541194457, guid: d8fb86aa30de0a6499d9c8cb789f6e1a, type: 3}
+  - {fileID: 6273131173108516681, guid: 497344587d6b07f449e578d5f87fe14a, type: 3}
 --- !u!114 &857454629952954580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,3 +417,16 @@ MonoBehaviour:
   questMarkersComplete: 
   questText: {fileID: 1623097859}
   questTextPanel: {fileID: 554475093}
+--- !u!114 &2239976085697291082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857454628435622964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b095525920f504f8384b1c1ca2a84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsList: []

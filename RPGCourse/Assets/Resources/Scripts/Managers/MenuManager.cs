@@ -190,10 +190,7 @@ public class MenuManager : MonoBehaviour
                 rt.sizeDelta = new Vector2(95, 95);
                 TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
 
-                if (playerSelected.equipedArmor.amount > 1)
-                    itemsAmountText.text = playerSelected.equipedArmor.amount.ToString();
-                else
-                    itemsAmountText.text = "";
+                itemsAmountText.text = "";
 
                 itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedArmor;
             }
@@ -212,10 +209,7 @@ public class MenuManager : MonoBehaviour
                 rt.sizeDelta = new Vector2(95, 95);
                 TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
 
-                if (playerSelected.equipedWeapon.amount > 1)
-                    itemsAmountText.text = playerSelected.equipedWeapon.amount.ToString();
-                else
-                    itemsAmountText.text = "";
+                itemsAmountText.text = "";
 
                 itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedWeapon;
             }
@@ -241,7 +235,7 @@ public class MenuManager : MonoBehaviour
         PlayerStats playerSelected = playerStats[playerSelectedNumberForUnequpied];
         if (activeItem)
         {
-            if(activeItem.itemType == ItemManager.ItemType.Armor)
+            if (activeItem.GetComponentInChildren<Armor>())
             {
                 playerSelected.equipedArmor = null;
                 playerSelected.equipedArmorName = "";
@@ -251,7 +245,7 @@ public class MenuManager : MonoBehaviour
                     Destroy(itemSlot.gameObject);
                 }
             }
-            else if (activeItem.itemType == ItemManager.ItemType.Weapon)
+            else if (activeItem.GetComponentInChildren<Weapon>())
             {
                 playerSelected.equipedWeapon = null;
                 playerSelected.equipedWeaponName = "";
@@ -266,6 +260,7 @@ public class MenuManager : MonoBehaviour
 
     public void UpdateItemsInventory()
     {
+        
         foreach (Transform itemSlot in itemSlotContainerParent)
         {
             Destroy(itemSlot.gameObject);
@@ -282,10 +277,20 @@ public class MenuManager : MonoBehaviour
 
             TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
 
-            if (item.amount > 1)
-                itemsAmountText.text = item.amount.ToString();
+            bool isStacks = item.GetComponentInChildren<StackableItems>();
+
+            if (isStacks)
+            {
+                int itemStacksCount = item.GetComponentInChildren<StackableItems>().itemAmount;
+
+                if (itemStacksCount > 1)
+                    itemsAmountText.text = itemStacksCount.ToString();
+                else
+                    itemsAmountText.text = "";
+            }
             else
                 itemsAmountText.text = "";
+
 
 
             itemSlot.GetComponent<ItemButton>().itemOnButton = item;
