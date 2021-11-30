@@ -13,8 +13,7 @@ public class ItemManager : MonoBehaviour
 
     public virtual void UseItem(int characterToUseOn)
     {
-        PlayerStats selectedCharacter = GameManager.instance.GetPlayerStats()[characterToUseOn];
-
+        BattleCharacters selectedCharacter = BattleManager.instance.GetActiveBattleCharacters()[characterToUseOn];
     }
 
     

@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Glistich
-  CharacterImage: {fileID: -5183574429699489216, guid: 97230b1cf0bead843afcf0cb514038de, type: 3}
+  CharacterImage: {fileID: 945498118, guid: de0486bd03ed81a409b9f7f51fb7ab32, type: 3}
   maxLevel: 50
   playerLevel: 1
   currentXp: 16

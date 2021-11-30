@@ -537,6 +537,7 @@ public class BattleManager : MonoBehaviour
         return activeCharacters[currentTurn];
     }
 
+
     private int GettingMovePowerAndEffectInst(int characterTarget, int i)
     {
         int movePower;
@@ -578,13 +579,18 @@ public class BattleManager : MonoBehaviour
     {
         itemToUseMenu.SetActive(true);
 
+
         foreach (Transform itemSlot in itemSlotContainerParent)
         {
             Destroy(itemSlot.gameObject);
         }
         foreach (ItemManager item in Inventory.instance.GetItemsList())
         {
-            RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotContainerParent).GetComponent<RectTransform>();
+            bool isStacks = item.GetComponentInChildren<StackableItems>();
+
+            if (isStacks)
+            {
+                RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotContainerParent).GetComponent<RectTransform>();
 
             Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
             itemImage.sprite = item.itemImage;
@@ -594,23 +600,18 @@ public class BattleManager : MonoBehaviour
 
             TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
 
-            bool isStacks = item.GetComponentInChildren<StackableItems>();
-
-            if (isStacks)
-            {
+            
                 int itemStacksCount = item.GetComponentInChildren<StackableItems>().itemAmount;
 
                 if (itemStacksCount > 1)
                     itemsAmountText.text = itemStacksCount.ToString();
                 else
                     itemsAmountText.text = "";
+
+                itemSlot.GetComponent<ItemButton>().itemOnButton = item;
+                itemSlot.GetComponent<Button>().interactable = true;
             }
-            else
-                itemsAmountText.text = "";
-
-
-            itemSlot.GetComponent<ItemButton>().itemOnButton = item;
-            itemSlot.GetComponent<Button>().interactable = true;
+                       
         }
     }
 
@@ -647,7 +648,12 @@ public class BattleManager : MonoBehaviour
 
     public void UseItemButton(int selectedPlayer)
     {
-        activeCharacters[selectedPlayer].UseItemInBattle(selectedItem);
+        bool isUsable = selectedItem.GetComponentInChildren<StackableItems>();
+        if (isUsable)
+        {
+            selectedItem.UseItem(selectedPlayer);
+        }
+
         Inventory.instance.RemoveItem(selectedItem);
 
         UpdatePlayerStats();
@@ -728,4 +734,10 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(EndBattleCoroutine());
         SceneManager.LoadScene(gameOverScene);
     }
+
+    public List<BattleCharacters> GetActiveBattleCharacters()
+    {
+        return activeCharacters;
+    }
+
 }
