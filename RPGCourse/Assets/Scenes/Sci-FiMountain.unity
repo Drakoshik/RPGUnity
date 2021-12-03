@@ -309,9 +309,9 @@ MonoBehaviour:
     - DragonBoss
     rewardXP: 200000
     rewardItems:
-    - {fileID: 4398337953552598414, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
-    - {fileID: 3362050689319959711, guid: 455b3f6d13952d34483b3099a7425f14, type: 3}
-    - {fileID: 5809454621621172600, guid: 497344587d6b07f449e578d5f87fe14a, type: 3}
+    - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
+    - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
+    - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
     isBossFight: 1
   activateOnEnter: 0
   timeBetweenBattles: 2
@@ -15458,6 +15458,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[0].rewardItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 6273131173108516681, guid: 497344587d6b07f449e578d5f87fe14a, type: 3}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[0].rewardItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 5386535183541194457, guid: d8fb86aa30de0a6499d9c8cb789f6e1a, type: 3}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[1].rewardItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 5386535183541194457, guid: d8fb86aa30de0a6499d9c8cb789f6e1a, type: 3}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[2].rewardItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 6273131173108516681, guid: 497344587d6b07f449e578d5f87fe14a, type: 3}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[2].rewardItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 5386535183541194457, guid: d8fb86aa30de0a6499d9c8cb789f6e1a, type: 3}
+    - target: {fileID: 437203695324620881, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
+      propertyPath: avaliableBattles.Array.data[2].rewardItems.Array.data[2]
+      value: 
+      objectReference: {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
     - target: {fileID: 437203695324620882, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
       propertyPath: m_Name
       value: BattleZone

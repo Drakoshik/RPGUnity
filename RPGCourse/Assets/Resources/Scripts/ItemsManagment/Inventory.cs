@@ -9,10 +9,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<ItemManager> itemsList;
 
 
-    //public static inventar instance;
-
-    //[SerializeField] List<Item> itemsList;
-
     private void Start()
     {
         instance = this;
@@ -21,7 +17,8 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        
+            if (Input.GetKeyDown(KeyCode.Q))
         {
             foreach (ItemManager itemInInventory in itemsList)
             {
@@ -45,7 +42,7 @@ public class Inventory : MonoBehaviour
             {
                 if (itemInInventory.itemName == item.itemName)
                 {
-                    itemInInventory.GetComponentInChildren<StackableItems>().itemAmount += item.GetComponentInChildren<StackableItems>().itemAmount;
+                    itemInInventory.GetComponentInChildren<StackableItems>().itemAmount ++;
                     itemAlreadyInInventory = true;
                 }
             }

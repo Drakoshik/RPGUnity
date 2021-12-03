@@ -9,7 +9,6 @@ public class StackableItems : ItemManager
 
     public override void UseItem(int characterToUseOn)
     {
-        Debug.Log(itemName + " " + itemAmount);
         base.UseItem(characterToUseOn);
     }
 }

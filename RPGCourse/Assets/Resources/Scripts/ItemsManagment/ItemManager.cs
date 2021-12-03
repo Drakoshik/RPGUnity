@@ -13,7 +13,6 @@ public class ItemManager : MonoBehaviour
 
     public virtual void UseItem(int characterToUseOn)
     {
-        BattleCharacters selectedCharacter = BattleManager.instance.GetActiveBattleCharacters()[characterToUseOn];
     }
 
     
@@ -21,7 +20,9 @@ public class ItemManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Inventory.instance.AddItems(this);
+            string takenItemName = this.itemName;
+            ItemManager itemToAdd = ItemsAssets.instance.GetItemAsset(takenItemName);
+            Inventory.instance.AddItems(itemToAdd);
             SelfDestroy();
             AudioManager.instance.PlaySFX(5);
         }
@@ -30,7 +31,8 @@ public class ItemManager : MonoBehaviour
 
     public void SelfDestroy()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
 

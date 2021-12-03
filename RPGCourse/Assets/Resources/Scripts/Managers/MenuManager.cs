@@ -59,6 +59,10 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UpdateItemsInventory();
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.shopOpened == false && GameManager.instance.isBattleStart == false)
         {
             if (menu.activeInHierarchy)
@@ -306,6 +310,7 @@ public class MenuManager : MonoBehaviour
             Inventory.instance.RemoveItem(activeItem);
             UpdateItemsInventory();
             AudioManager.instance.PlaySFX(3);
+            //Instantiate(activeItem);
         }
     }
 
@@ -344,6 +349,7 @@ public class MenuManager : MonoBehaviour
     public void CloseCharacterChoisePanel()
     {
         characterChoisePanel.SetActive(false);
+        activeItem = null;
     }
 
 

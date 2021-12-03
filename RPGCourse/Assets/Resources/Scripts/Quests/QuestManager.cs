@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
 
-        if (GameManager.instance.isBattleStart == true || MenuManager.instance.menu.activeInHierarchy)
+        if (GameManager.instance.isBattleStart == true || MenuManager.instance.menu.activeInHierarchy || GameManager.instance.shopOpened)
         {
             questTextPanel.SetActive(false);
         }
