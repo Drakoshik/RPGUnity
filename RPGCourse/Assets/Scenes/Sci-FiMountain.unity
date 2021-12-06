@@ -313,7 +313,7 @@ MonoBehaviour:
     - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
     - {fileID: -8943626156935448162, guid: bf174057a9899fd40bd0d33dc95f39ab, type: 3}
     isBossFight: 1
-  activateOnEnter: 0
+  activateOnEnter: 1
   timeBetweenBattles: 2
   deactivateAfterStart: 1
   canRunAway: 0
@@ -3261,6 +3261,10 @@ PrefabInstance:
     - target: {fileID: 323835326957469407, guid: 00013b6a6b867ad438be3173312d771c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184054421333550759, guid: 00013b6a6b867ad438be3173312d771c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00013b6a6b867ad438be3173312d771c, type: 3}
