@@ -183,58 +183,11 @@ public class MenuManager : MonoBehaviour
         statDex.text = playerSelected.dexterity.ToString();
         statDef.text = playerSelected.defence.ToString();
 
-        
-        
 
-        //мейби переделать
-
-        if (itemSlotEquipedArmor.childCount != 1)
-        {
-            foreach (Transform itemSlot in itemSlotEquipedArmor)
-            {
-                Destroy(itemSlot.gameObject);
-            }
-
-            if (playerSelected.equipedArmor != null)
-            {
-                RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotEquipedArmor).GetComponent<RectTransform>();
-
-                Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
-                itemImage.sprite = playerSelected.equipedArmor.itemImage;
-
-                RectTransform rt = itemImage.GetComponent<RectTransform>();
-                rt.sizeDelta = new Vector2(95, 95);
-                TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
-
-                itemsAmountText.text = "";
-
-                itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedArmor;
-            }
-        }
-
-        if (itemSlotEquipedWeapon.childCount != 1)
-        {
-            foreach (Transform itemSlot in itemSlotEquipedWeapon)
-            {
-                Destroy(itemSlot.gameObject);
-            }
-
-            if (playerSelected.equipedWeapon != null)
-            {
-                RectTransform itemSlot = Instantiate(itemSlotContainer, itemSlotEquipedWeapon).GetComponent<RectTransform>();
-
-                Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
-                itemImage.sprite = playerSelected.equipedWeapon.itemImage;
-
-                RectTransform rt = itemImage.GetComponent<RectTransform>();
-                rt.sizeDelta = new Vector2(95, 95);
-                TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
-
-                itemsAmountText.text = "";
-
-                itemSlot.GetComponent<ItemButton>().itemOnButton = playerSelected.equipedWeapon;
-            }
-        }
+        var equiped = playerSelected.equipedArmor;
+        UpadteEquiped(equiped, itemSlotEquipedArmor);
+        equiped = playerSelected.equipedWeapon;
+        UpadteEquiped(equiped, itemSlotEquipedWeapon);
 
         characterStatImage.sprite = playerSelected.CharacterImage;
 
@@ -248,6 +201,30 @@ public class MenuManager : MonoBehaviour
         statEquipedWeapon.text = playerSelected.equipedWeaponName;
         statEquipedWeaponPower.text = playerSelected.weaponPower.ToString();
         statEquipedArmorDefence.text = playerSelected.armorDefence.ToString();
+    }
+
+    private void UpadteEquiped(ItemManager equiped, Transform ItemSlotBox)
+    {
+        foreach (Transform itemSlot in ItemSlotBox)
+        {
+            Destroy(itemSlot.gameObject);
+        }
+
+        if (equiped != null)
+        {
+            RectTransform itemSlot = Instantiate(itemSlotContainer, ItemSlotBox).GetComponent<RectTransform>();
+
+            Image itemImage = itemSlot.Find("Image").GetComponent<Image>();
+            itemImage.sprite = equiped.itemImage;
+
+            RectTransform rt = itemImage.GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(95, 95);
+            TextMeshProUGUI itemsAmountText = itemSlot.Find("AmountText").GetComponent<TextMeshProUGUI>();
+
+            itemsAmountText.text = "";
+
+            itemSlot.GetComponent<ItemButton>().itemOnButton = equiped;
+        }
     }
 
     public void UnEquipButton()
