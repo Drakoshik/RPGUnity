@@ -2,37 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopKeeper : MonoBehaviour
+public class ShopKeeper : MonoBehaviour, IOpenButton
 {
-    private bool canOpenedShop;
+    
 
     [SerializeField] List<ItemManager> itemsForSale;
+    [SerializeField] string _name;
+    public string Name { get; set; }
 
-    private void Update()
+    private void Start()
     {
-        if(canOpenedShop && PlayerController.instance.isInteractionAvaliable && !PlayerController.instance.stopMove 
-            && !ShopManager.instance.shopMenu.activeInHierarchy)
+        _name = "Shop";
+        Name = _name;
+    }
+    public void OpenWindow()
+    {
+        
+        if (!ShopManager.instance.shopMenu.activeInHierarchy)
         {
             ShopManager.instance.itemForSale = itemsForSale;
             ShopManager.instance.OpenShopMenu();
+            Name = "shop";
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canOpenedShop = true;
-        }
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canOpenedShop = false;
-        }
-    }
 
 }

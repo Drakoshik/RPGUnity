@@ -283,7 +283,6 @@ public class BattleManager : MonoBehaviour
 
         UpdateBattle();
         UpdatePlayerStats();
-        //при смене айдишника на активного иргрока сдвинуть его, после смены на след адишник вернуть назад.
         if (activeCharacters[currentTurn].IsPlayer())
         {
             UpdateCharacterPosition(-1, currentTurn);

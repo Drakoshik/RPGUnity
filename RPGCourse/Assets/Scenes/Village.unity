@@ -202,6 +202,7 @@ MonoBehaviour:
   shouldActivateTheQuest: 0
   questToMark: 
   markAsComplete: 0
+  _name: 
 --- !u!1 &108434427
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   shouldActivateTheQuest: 1
   questToMark: Talk to ninja
   markAsComplete: 1
+  _name: 
 --- !u!114 &108434433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18539,11 +18541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1032484282712356992, guid: ecdf30f5987dc52479c17d8263dfd2c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.34
+      value: -27.69
       objectReference: {fileID: 0}
     - target: {fileID: 1032484282712356992, guid: ecdf30f5987dc52479c17d8263dfd2c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.73
+      value: -2.24
       objectReference: {fileID: 0}
     - target: {fileID: 1032484282712356992, guid: ecdf30f5987dc52479c17d8263dfd2c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18706,30 +18708,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 549.2671
-      objectReference: {fileID: 0}
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 239.13037
-      objectReference: {fileID: 0}
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -288
-      objectReference: {fileID: 0}
-    - target: {fileID: 554475094, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -130
-      objectReference: {fileID: 0}
     - target: {fileID: 857454628435622964, guid: 656f66183be4e8d43b46601520b7642b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -19111,11 +19089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 437203695324620880, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.23
+      value: -11.46
       objectReference: {fileID: 0}
     - target: {fileID: 437203695324620880, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.23
+      value: -7.12
       objectReference: {fileID: 0}
     - target: {fileID: 437203695324620880, guid: 0ef4230ba34ff804e93504f940609a51, type: 3}
       propertyPath: m_LocalPosition.z

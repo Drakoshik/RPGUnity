@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 554475094}
   - component: {fileID: 554475096}
   - component: {fileID: 554475095}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,10 +34,10 @@ RectTransform:
   m_Father: {fileID: 1626702311}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 672, y: 410}
-  m_SizeDelta: {x: -1370.7329, y: -840.8696}
+  m_AnchoredPosition: {x: -288, y: -130}
+  m_SizeDelta: {x: 549.2671, y: 239.13037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &554475096
 CanvasRenderer:
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 1626702314}
   - component: {fileID: 1626702313}
   - component: {fileID: 1626702312}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuestCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

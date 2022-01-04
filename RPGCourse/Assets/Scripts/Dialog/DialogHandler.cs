@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogHandler : MonoBehaviour
+public class DialogHandler : MonoBehaviour, IOpenButton
 {
     public string[] sentences;
 
@@ -16,24 +16,33 @@ public class DialogHandler : MonoBehaviour
     [SerializeField] string questToMark;
     [SerializeField] bool markAsComplete;
 
+    [SerializeField] string _name;
+
+    public string Name { get; set; }
+
+
     private void Start()
     {
         questID = QuestManager.instance.GetQuestNumber(questToMark);
         if(questID >= 1)
             previousQuest = QuestManager.instance.GetQuestNames()[questID - 1];
+        _name = "Dialog";
+        Name = _name;
     }
 
 
-    private void Update()
+    public void OpenWindow()
     {
-        if (canActivateBox && PlayerController.instance.isInteractionAvaliable && !DialogController.instance.IsDialogBoxActive())
+        
+
+        if (!DialogController.instance.IsDialogBoxActive())
         {
             DialogController.instance.ActivateDialog(sentences);
             if (shouldActivateTheQuest)
             {
                 if (ifNeedPreviousQuest && questID >= 1)
                 {
-                    
+
                     if (QuestManager.instance.CheckIfComplete(previousQuest))
                     {
                         DialogController.instance.ActivateQuestAtEnd(questToMark, markAsComplete);
@@ -43,23 +52,6 @@ public class DialogHandler : MonoBehaviour
                     DialogController.instance.ActivateQuestAtEnd(questToMark, markAsComplete);
 
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canActivateBox = true;
-        }
-        
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            canActivateBox = false;
         }
     }
 }

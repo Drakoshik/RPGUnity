@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +23,12 @@ public class PlayerController : MonoBehaviour
 
     public bool stopMove = false;
 
+    [SerializeField] TextMeshProUGUI buttonText;
+    [SerializeField] GameObject button;
+
+    private IOpenButton openFunction;
+
+
     private void Start()
     {
         if(instance != null && instance != this)
@@ -35,11 +43,23 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);   
     }
 
-
-    private void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isInteractionAvaliable = false;
+        openFunction = collision.GetComponent<IOpenButton>();
+        if (openFunction != null)
+        {
+            buttonText.text = openFunction.Name;
+            button.SetActive(true);
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        openFunction = null;
+        button.SetActive(false);
+    }
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -55,13 +75,21 @@ public class PlayerController : MonoBehaviour
 
         if (stopMove)
         {
+            joystick.GetComponent<Joystick>().handle.localPosition = Vector2.zero;
+            joystick.input = Vector2.zero;
             playerRigidBody.velocity = Vector2.zero;
             joystick.gameObject.SetActive(false);
+            button.SetActive(false);
         }
         else
         {
             playerRigidBody.velocity = new Vector2(horizontalMovement, verticalMovement) * moveSpeed;
             joystick.gameObject.SetActive(true);
+            if (openFunction != null)
+            {
+                buttonText.text = openFunction.Name;
+                button.SetActive(true);
+            }
         }
 #endif
 
@@ -74,10 +102,16 @@ public class PlayerController : MonoBehaviour
         if (stopMove)
         {
             playerRigidBody.velocity = Vector2.zero;
+        button.SetActive(false);
         }
         else
         {
             playerRigidBody.velocity = new Vector2(horizontalMovement, verticalMovement) * moveSpeed;
+        if (openFunction != null)
+            {
+                buttonText.text = openFunction.Name;
+                button.SetActive(true);
+            }
         }
 #endif
 
@@ -105,7 +139,11 @@ public class PlayerController : MonoBehaviour
 
     public void GetInteraction()
     {
-        isInteractionAvaliable = true;
-        Debug.Log(isInteractionAvaliable);
+
+        if(openFunction != null)
+        {
+            openFunction.OpenWindow();
+        }
+
     }
 }
