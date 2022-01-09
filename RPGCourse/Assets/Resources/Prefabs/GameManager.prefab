@@ -367,6 +367,7 @@ MonoBehaviour:
   shopOpened: 0
   isBattleStart: 0
   currentCurrency: 0
+  currentGems: 150
 --- !u!114 &857454628435622971
 MonoBehaviour:
   m_ObjectHideFlags: 0

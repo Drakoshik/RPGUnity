@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         
-            if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             foreach (ItemManager itemInInventory in itemsList)
             {

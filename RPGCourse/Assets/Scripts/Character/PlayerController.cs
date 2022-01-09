@@ -63,10 +63,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            GetInteraction();
+        {
+            InterstitialAds.instance.ShowAd();
+        }
+
 
         float horizontalMovement;
         float verticalMovement;
+
 
 #if UNITY_ANDROID
         horizontalMovement = joystick.Horizontal;

@@ -8,9 +8,10 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
 
-    public GameObject shopMenu, buyPanel, sellPanel;
+    public GameObject shopMenu, buyPanel, sellPanel, donatShop;
 
     [SerializeField] TextMeshProUGUI currentCurrencyText;
+    [SerializeField] TextMeshProUGUI currentGemsText;
 
     public List<ItemManager> itemForSale;
 
@@ -22,27 +23,63 @@ public class ShopManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI buyItemName, buyItemDesc, buyItemValue;
     [SerializeField] TextMeshProUGUI sellItemName, sellItemDesc, sellItemValue;
 
+    [SerializeField] GameObject buyDonateItemsPanel, buyAccountBonusesPanel;
+
 
 
     private void Start()
     {
         instance = this;
+
+        Debug.Log(RewardedAds.rewardedAds);
     }
 
 
     public void OpenShopMenu()
     {
+        if (donatShop.activeInHierarchy)
+        {
+            donatShop.SetActive(false);
+        }
         shopMenu.SetActive(true);
         GameManager.instance.shopOpened = true;
 
         OpenBuyPannel();
 
         currentCurrencyText.text = "Curr:" + GameManager.instance.currentCurrency;
+        
     }
+
+    public void OpenBuyDonateItemPanel()
+    {
+        buyDonateItemsPanel.SetActive(true);
+        buyAccountBonusesPanel.SetActive(false);
+    }
+
+    public void OpenBuyAccountBonusesPanel()
+    {
+        buyAccountBonusesPanel.SetActive(true);
+        buyDonateItemsPanel.SetActive(false);
+    }
+
+    public void OpenDonatShopMenu()
+    {
+        shopMenu.SetActive(false);
+        donatShop.SetActive(true);
+        currentGemsText.text = "Gems:" + GameManager.instance.currentGems;
+    }
+
+
 
     public void CloseShopMenu()
     {
         shopMenu.SetActive(false);
+        GameManager.instance.shopOpened = false;
+    }
+
+    public void CloseDonatShop()
+    {
+        donatShop.SetActive(false);
         GameManager.instance.shopOpened = false;
     }
 
@@ -140,5 +177,16 @@ public class ShopManager : MonoBehaviour
             currentCurrencyText.text = "Curr: " + GameManager.instance.currentCurrency;
             UpdateItemsInShop(itemSlotSellContainerParent, Inventory.instance.GetItemsList());
         }
+    }
+
+
+    public void ShowAd()
+    {
+        RewardedAds.rewardedAds.ShowAd();
+    }
+
+    public void UpdateCurrentGems(int value)
+    {
+        currentGemsText.text = "Gems:" + value;
     }
 }

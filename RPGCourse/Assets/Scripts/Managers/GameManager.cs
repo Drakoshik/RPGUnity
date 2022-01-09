@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
 
     public int currentCurrency;
+    public int currentGems;
 
     private void Awake()
     {
